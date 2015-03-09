@@ -34,15 +34,6 @@ func main() {
 }
 `
 
-func writeHello(filename string) error {
-	f, err := os.Create(filename)
-	if err != nil {
-		return err
-	}
-	f.WriteString(HelloProg)
-	return f.Close()
-}
-
 func run(filename string) {
 	cmd := exec.Command("go", "run", filename)
 	cmd.Stdout = os.Stdout
@@ -58,12 +49,13 @@ func main() {
 
 	dir, err := ioutil.TempDir("", "goplay")
 	if err != nil {
-		log.Print(err)
-		return
+		log.Fatal(err)
 	}
 	defer os.RemoveAll(dir)
 	file := path.Join(dir, "a.go")
-	writeHello(file)
+	if err := ioutil.WriteFile(file, []byte(HelloProg), 0600); err != nil {
+		log.Fatal(err)
+	}
 
 	r, err := acme.Log()
 	if err != nil {
