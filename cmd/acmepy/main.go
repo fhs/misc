@@ -21,7 +21,7 @@ import (
 	"strconv"
 	"strings"
 
-	"code.google.com/p/goplan9/plan9/acme"
+	"9fans.net/go/acme"
 )
 
 var LineRef = regexp.MustCompile(`File "([a-zA-Z¡-￿0-9_\-./]+)", line ([0-9]+)`)
