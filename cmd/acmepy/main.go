@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Adapted from https://code.google.com/p/rsc/source/browse/cmd/acmego/main.go
+// Adapted from https://godoc.org/9fans.net/go/acme/acmego
 
 // Acmepy watches acme for .py files being written.
 // Each time a .py file is written, acmepy checks whether the
