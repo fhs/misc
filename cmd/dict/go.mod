@@ -1,4 +1,4 @@
-module dict
+module github.com/fhs/misc/cmd/dict
 
 go 1.11
 
