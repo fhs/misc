@@ -4,6 +4,6 @@
 set timeout -1
 
 # Start the guest VM
-spawn qemu-system-x86_64 -nographic -cpu host -enable-kvm -machine accel=kvm ./bootdisk
+spawn qemu-system-x86_64 -nographic ./bootdisk
 
 expect "bootargs is "
