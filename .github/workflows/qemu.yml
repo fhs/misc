@@ -13,5 +13,6 @@ jobs:
         which expect
         expect -version
         pwd
-        ls -l
+        ls -la
+        ls -la ..
         ./run.exp
