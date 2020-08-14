@@ -1,0 +1,11 @@
+on: [push]
+name: Qemu
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run Qemu
+      run: |
+        qemu-system-x86_64 -help
