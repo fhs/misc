@@ -34,10 +34,13 @@ func main() {
 }
 `
 
+var cwd string
+
 func run(filename string) {
 	cmd := exec.Command("go", "run", filename)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
+	cmd.Dir = cwd
 	if err := cmd.Run(); err != nil {
 		log.Printf("%s\n", err)
 	}
@@ -51,10 +54,17 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	cwd = dir
+
 	defer os.RemoveAll(dir)
 	file := path.Join(dir, "a.go")
 	if err := ioutil.WriteFile(file, []byte(HelloProg), 0600); err != nil {
 		log.Fatal(err)
+	}
+	modInitCmd := exec.Command("go", "mod", "init", "foo.bar/goplay")
+	modInitCmd.Dir = dir
+	if err := modInitCmd.Run(); err != nil {
+		log.Printf("error doing mod init in %s: %v", dir, err)
 	}
 
 	r, err := acme.Log()
