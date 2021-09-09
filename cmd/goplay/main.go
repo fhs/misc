@@ -61,7 +61,7 @@ func main() {
 	if err := ioutil.WriteFile(file, []byte(HelloProg), 0600); err != nil {
 		log.Fatal(err)
 	}
-	modInitCmd := exec.Command("go", "mod", "init", "foo.bar/goplay")
+	modInitCmd := exec.Command("go", "mod", "init", "example.com/goplay")
 	modInitCmd.Dir = dir
 	if err := modInitCmd.Run(); err != nil {
 		log.Printf("error doing mod init in %s: %v", dir, err)
