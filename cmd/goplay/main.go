@@ -51,10 +51,18 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	if err := os.Chdir(dir); err != nil {
+		log.Fatal(err)
+	}
+
 	defer os.RemoveAll(dir)
 	file := path.Join(dir, "a.go")
 	if err := ioutil.WriteFile(file, []byte(HelloProg), 0600); err != nil {
 		log.Fatal(err)
+	}
+	modInitCmd := exec.Command("go", "mod", "init", "foo.bar/goplay")
+	if err := modInitCmd.Run(); err != nil {
+		log.Printf("error doing mod init in %s: %v", dir, err)
 	}
 
 	r, err := acme.Log()
